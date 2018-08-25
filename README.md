@@ -1,4 +1,4 @@
-#Competitive Programmer's Core Skills 
+# Competitive Programmer's Core Skills 
 
 These are my solutions for the course [Competitive Programmer's Core Skills](https://www.coursera.org/learn/competitive-programming-core-skills/), available on Coursera for 59 USD. The problems can be found [in this very repo](./problem_statements.pdf).
 
