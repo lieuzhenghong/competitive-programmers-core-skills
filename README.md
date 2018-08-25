@@ -17,11 +17,11 @@ array again and delete either the only maximum element or the third.
 
 ### 1.3 Increment
 
-O(n) solution. We note that unless the number is made of all 9s, incrementing it will not change the number of decimal digits.
+Trivial O(n) solution. We note that unless the number is made of all 9s, incrementing it will not change the number of decimal digits.
 
 ### 1.4 Straight Flush
 
-No tricks here, the only hiccup is the Ace. The check for the Ace is not so straightforward. I initialised the Ace as 14.
+No tricks here, the only hiccup is the Ace. The check for the Ace is not so straightforward. I initialised the Ace as 14 (but it also can act as a 1). So the following code is needed to "convert" the Ace over.
 
 ```cpp
 int cards[5] = ....;
