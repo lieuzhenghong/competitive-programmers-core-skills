@@ -88,6 +88,8 @@ The problem here is to keep the error small.
 I separate the sum and the reciprocal sum. The sum is all integers so there
 will be no errors there. Then summing the reciprocal keeps the errors small as the numbers are all <1.
 
+Small gotcha: to do the reciprocal, we can't do `1/n` as this will perform integer division. Instead do `1.0/n` to cast to double.
+
 ### 3.4 Binary Knapsack
 
 We know that an exact algorithm for Knapsack is NP-complete (polynomial in the weight `W` of the knapsack). Given that our weight is 10^9, this is rather bad; we need to make use of the binary property of the weights.
