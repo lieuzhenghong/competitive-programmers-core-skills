@@ -47,8 +47,8 @@ int main()
     long long i = sum_ints(ns);
     double d = sum_recips(ns);
 
-    cout << i << endl;
-    cout << d << endl;
+    //cout << i << endl;
+    //cout << d << endl;
 
     std::cout << std::setprecision(11) << i + d;
 

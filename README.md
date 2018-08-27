@@ -66,4 +66,42 @@ Finally, just sum up the whole pyramid.
 
 An obvious and rather trivial O(n) solution presents itself.
 
-## Week 3
+## Week 3 (2/4 complete)
+
+### 3.1 Compare Sums
+
+The trick is to realise that the floating point numbers have *exactly 3 digits after the decimal point*. That means that multiplying each floating point number by 1000 gives an integer. Doing this requires some string processing; I used `tmp.substr()` and `tmp.find('.')` to grab the integer bit and the decimal bit.
+
+```cpp
+int integer_portion = std::stoi(tmp.substr(0, tmp.find(delimiter))) * 1000;
+int decimal_portion = std::stoi(tmp.substr(tmp.find(delimiter) + 1, tmp.size()));
+```
+
+and once everything becomes an integer, checking if they're equal is trivial.
+
+### 3.2 Round Up
+
+### 3.3 Yet Another Sum
+
+The problem here is to keep the error small.
+
+I separate the sum and the reciprocal sum. The sum is all integers so there
+will be no errors there. Then summing the reciprocal keeps the errors small as the numbers are all <1.
+
+### 3.4 Binary Knapsack
+
+We know that an exact algorithm for Knapsack is NP-complete (polynomial in the weight `W` of the knapsack). Given that our weight is 10^9, this is rather bad; we need to make use of the binary property of the weights.
+
+Recall that a greedy approach takign best ratio is not optimal. Consider the following knapsack instance:
+
+```
+3 4
+1 3
+2 2
+4 6
+```
+Here the greedy approach taking `1` breaks down as taking `4` is the best.
+
+What's important about the binary property of the weights?
+
+For a good with value `v` and weight `w`, we know right away that 
