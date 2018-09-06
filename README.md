@@ -94,7 +94,7 @@ Small gotcha: to do the reciprocal, we can't do `1/n` as this will perform integ
 
 We know that an exact algorithm for Knapsack is NP-complete (polynomial in the weight `W` of the knapsack). Given that our weight is 10^9, this is rather bad; we need to make use of the binary property of the weights.
 
-Recall that a greedy approach takign best ratio is not optimal. Consider the following knapsack instance:
+Recall that a greedy approach taking the best ratio is not optimal. Consider the following knapsack instance:
 
 ```
 3 4
@@ -107,3 +107,23 @@ Here the greedy approach taking `1` breaks down as taking `4` is the best.
 What's important about the binary property of the weights?
 
 For a good with value `v` and weight `w`, we know right away that 
+
+### 4.1 Most Frequent Letter
+
+"To compute a range sum, take the difference of two prefix sums" --- Kuan 2018
+
+Initialise an array of letter arrays, where each letter-array keeps track of the number of occurrences of each letter at that point.
+
+So consider the string s = `abcda`, the letter arrays would be as follows:
+
+```
+las[0] = [1, 0, 0, 0, .... ,0] // 1 a, 0 of other letters
+las[1] = [1, 1, 0, 0, .... ,0] // add 1 b
+las[2] = [1, 1, 1, 0, .... ,0] 
+las[3] = [1, 1, 1, 0, .... ,0]
+las[4] = [2, 1, 1, 0, .... ,0]  
+```
+
+and the formula to calculate the most frequent letter in a subset `l,r` is simply `las[r] - las[l-1]` or just `las[r]` when l = 0, which runs in `O(1)` time.
+
+Overall runtime is `O(n)`.
