@@ -127,3 +127,54 @@ las[4] = [2, 1, 1, 0, .... ,0]
 and the formula to calculate the most frequent letter in a subset `l,r` is simply `las[r] - las[l-1]` or just `las[r]` when l = 0, which runs in `O(1)` time.
 
 Overall runtime is `O(n)`.
+
+### 4.3 Multiset
+
+The problem is very straightforward. You have a 100,000 element array and you want to find the number of occurrences of each number. 
+
+The code is so easy I'm just going to put it here:
+
+```cpp
+void print_out(array<int, 100001> &xs)
+{
+    for (int i = 1; i < 100001; i++)
+    {
+        if (xs[i] == 0)
+            continue;
+        else
+            cout << i << " " << xs[i] << '\n';
+    }
+}
+
+int main()
+{
+    std::ios_base::sync_with_stdio(false);
+    cin.tie(0);
+    int n;
+    array<int, 100001> S = {0};
+
+    cin >> n;
+    int l;
+    int r;
+
+    while (cin >> l >> r)
+    {
+        for (int i = l; i <= r; i++)
+        {
+            S[i]++;
+        }
+    }
+
+    print_out(S);
+
+    return 0;
+}
+```
+
+This is a bit of a curious one. Originally I got TLE but after `std::ios_base::sync_with_stdio(false)`,
+`cin.tie(0)`, and `cout >> '\n'` rather than `cout >> endl` which flushes the buffer, I was able to make this `O(n^2)` solution pass.
+
+I'm curious if there's a solution that runs in `O(n log n)` time.
+
+**EDIT 7th September 2018**
+There is an `O(n log n)` solution using segment trees. I'll probably want to write it up and put it on the blog, it's quite interesting.
