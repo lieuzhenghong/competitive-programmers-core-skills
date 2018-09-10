@@ -191,4 +191,18 @@ There is an `O(n log n)` solution using segment trees. I'll probably want to wri
 ### 6.1 Knapsack
 ### 6.2 Chain Matrix Multiplication
 ### 6.3 Longest Common Subsequence
+ Given two sequences A and B of the same length, find the largest common subsequence; 
+ that is, find the largest integer k such that there exist two sequences of indices
+ i_0, i_1 , ..., i_n and
+ j_0, j_1, ...., j_n 
+ of length k such that for all 0 <= x <= n, A[i_x] = B[i_x].
+
+For example, one largest common subsequence of the two sequences
+    1 2 3 4 5
+    1 3 2 4 4
+is 3,
+    0 1 3
+    0 2 3
+
+
 ### 6.4 Maximum Sum Square

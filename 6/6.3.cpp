@@ -1,3 +1,17 @@
+/*
+ 6.3 Longest Common Subsequence
+ Given two sequences A and B of the same length, find the largest common subsequence; 
+ that is, find the largest integer k such that there exist two sequences of indices
+ i_0, i_1 , ..., i_n and
+ j_0, j_1, ...., j_n 
+ of length k such that for all 0 <= x <= n, A[x] = B[x].
+ 
+ This is a 2D dynamic programming solution. We can calculate the current row's solution
+ only from the previous row, so we can throw away earlier rows; this is necessary
+ for my solution to pass.
+
+*/
+
 #include <iostream>
 #include <vector>
 #include <array>
@@ -10,11 +24,12 @@ using std::cout;
 using std::endl;
 using std::vector;
 
-typedef array<array<std::pair<vector<int>, vector<int>>, 1001>, 1001> grid;
+typedef array<std::pair<vector<int>, vector<int>>, 1001> row;
 
 int length;
 vector<int> a, b;
-grid g;
+row curr;
+row prev;
 
 void read_input()
 {
@@ -39,54 +54,60 @@ void read_input()
     // split by space
 }
 
-void print_grid()
-{
-    for (int i = 0; i <= length; i++)
-    {
-        for (int j = 0; j <= length; j++)
-        {
-            cout << "[";
-            cout << "{";
-            for (auto &p : g[i][j].first)
-            {
-                cout << p << ",";
-            }
-            cout << "}";
-            cout << "{";
-            for (auto &p : g[i][j].second)
-            {
-                cout << p << ",";
-            }
-            cout << "}";
-            cout << "]";
-        }
-        cout << endl;
-    }
-}
-
 void fill_grid()
 {
     for (int i = 0; i <= 1000; i++)
-        g[0][i] = {{}, {}};
-    for (int j = 0; j <= 1000; j++)
-        g[j][0] = {{}, {}};
-
+        curr[i] = {{}, {}};
     for (int i = 1; i <= length; i++) // row
     {
-        for (int j = 1; j <= length; j++)
+        prev = curr;
+        curr = {};
+
+        for (int j = 0; j <= length; j++)
         {
-            std::pair<vector<int>, vector<int>> first_pair = g[i - 1][j];
-            std::pair<vector<int>, vector<int>> second_pair = g[i][j - 1];
-            g[i][j] = (first_pair.first.size() >= second_pair.first.size()) ? first_pair : second_pair;
-            if (a[i - 1] == b[j - 1])
+            if (j == 0)
             {
-                if (g[i][j].first.size() > 0)
+                curr[j] = {{}, {}};
+                continue;
+            }
+            else
+            {
+                std::pair<vector<int>, vector<int>> first_pair = prev[j];
+                std::pair<vector<int>, vector<int>> second_pair = curr[j - 1];
+                if (a[i - 1] == b[j - 1])
                 {
-                    if (g[i][j].first.back() == i - 1 || g[i][j].second.back() == j - 1)
-                        continue;
+                    if (first_pair.first.size() > 0)
+                    // We check for this condition because vector.back() of a vector of length 0
+                    // is undefined behaviour
+                    {
+                        if (first_pair.first.back() != i - 1 && first_pair.second.back() != j - 1)
+                        // We check for this condition because otherwise we could be
+                        // "double counting" the same letter
+                        {
+                            first_pair.first.push_back(i - 1);
+                            first_pair.second.push_back(j - 1);
+                        }
+                    }
+                    else
+                    {
+                        first_pair.first.push_back(i - 1);
+                        first_pair.second.push_back(j - 1);
+                    }
+                    if (second_pair.first.size() > 0)
+                    {
+                        if (second_pair.first.back() != i - 1 && second_pair.second.back() != j - 1)
+                        {
+                            second_pair.first.push_back(i - 1);
+                            second_pair.second.push_back(j - 1);
+                        }
+                    }
+                    else
+                    {
+                        second_pair.first.push_back(i - 1);
+                        second_pair.second.push_back(j - 1);
+                    }
                 }
-                g[i][j].first.push_back(i - 1);
-                g[i][j].second.push_back(j - 1);
+                curr[j] = (first_pair.first.size() >= second_pair.first.size()) ? first_pair : second_pair;
             }
         }
     }
@@ -98,21 +119,17 @@ int main()
 
     fill_grid();
 
-    cout << g[length][length].first.size() << endl;
-
-    for (auto &a : g[length][length].first)
+    cout << curr[length].first.size() << endl;
+    for (auto &a : curr[length].first)
     {
         cout << a << " ";
     }
     cout << endl;
-
-    for (auto &a : g[length][length].second)
+    for (auto &a : curr[length].second)
     {
         cout << a << " ";
     }
     cout << endl;
-
-    //print_grid();
 
     return 0;
 }
