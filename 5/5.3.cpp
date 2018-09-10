@@ -33,12 +33,11 @@ void read_input()
 void append_count()
 {
     array<ll, 163> new_counts = {0};
-    for (int i = 0; i < 163; i++)
+    for (int j = 0; j <= 9; j++)
     {
-        for (int j = 0; j <= 9; j++)
+        for (int i = 0; i < 163; i++)
         {
-            if (i + j < 163)
-                new_counts[i + j] += counts[i];
+            new_counts[i + j] += counts[i];
         }
     }
     counts = new_counts;
@@ -54,20 +53,27 @@ void generate_counts(int l)
 
 int main()
 {
-    std::ios_base::sync_with_stdio(false);
+    //std::ios_base::sync_with_stdio(false);
     read_input();
     // Generate all digit strings with length L
     // There are 10^L of them.
-    generate_counts(l);
-
-    /*
-    for (int i = 0; i <= s; i++)
+    if (s == 0 & l == 1)
     {
-        cout << i << ": " << counts[i] << endl;
+        cout << 1 << endl;
     }
-    */
+    else
+    {
+        generate_counts(l);
 
-    cout << counts[s] << endl;
+        /*
+        for (int i = 0; i <= s; i++)
+        {
+            cout << i << ": " << counts[i] << endl;
+        }
+        */
+
+        cout << counts[s] << endl;
+    }
 
     return 0;
 }
