@@ -176,5 +176,19 @@ This is a bit of a curious one. Originally I got TLE but after `std::ios_base::s
 
 I'm curious if there's a solution that runs in `O(n log n)` time.
 
+### 4.4 Maximal Sum Subarray
+
 **EDIT 7th September 2018**
 There is an `O(n log n)` solution using segment trees. I'll probably want to write it up and put it on the blog, it's quite interesting.
+
+## Week 5 (3/4 complete)
+### 5.1 Longest Increasing Sequence
+### 5.2 Minimum Edit Distance
+### 5.3 Digit Sum
+### 5.4 Make it Sorted
+
+## Week 6 (2/4 complete)
+### 6.1 Knapsack
+### 6.2 Chain Matrix Multiplication
+### 6.3 Longest Common Subsequence
+### 6.4 Maximum Sum Square
