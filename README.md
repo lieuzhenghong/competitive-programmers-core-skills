@@ -227,12 +227,13 @@ That means 700 * 700 * 1000 <= INT_MAX, so we can use integers.
 The dynamic programming algorithm relies upon a nice geometrical relation.
 
 ![Understanding the recurrence relation](img/6.4_explanation_1.png)
-![Understanding the recurrence relation](img/6.4_explanation_6.png)
-Suppose we want to find the sum of the submatrix D. We can do a constant amount of work to find it by relying on the previous computations.
 ![Understanding the recurrence relation](img/6.4_explanation_2.png)
+Suppose we want to find the sum of the submatrix D. We can do a constant amount of work to find it by relying on the previous computations.
 ![Understanding the recurrence relation](img/6.4_explanation_3.png)
 ![Understanding the recurrence relation](img/6.4_explanation_4.png)
 ![Understanding the recurrence relation](img/6.4_explanation_5.png)
 ![Understanding the recurrence relation](img/6.4_explanation_6.png)
+![Understanding the recurrence relation](img/6.4_explanation_7.png)
+![Understanding the recurrence relation](img/6.4_explanation_8.png)
 
 With this memoization, the solution runs in O(n^2) time rather than the O(n^2k^2) time needed in a naive solution.
