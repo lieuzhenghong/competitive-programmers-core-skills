@@ -108,6 +108,7 @@ What's important about the binary property of the weights?
 
 For a good with value `v` and weight `w`, we know right away that 
 
+## Week 4 (2/4 complete)
 ### 4.1 Most Frequent Letter
 
 "To compute a range sum, take the difference of two prefix sums" --- Kuan 2018
@@ -175,34 +176,50 @@ This is a bit of a curious one. Originally I got TLE but after `std::ios_base::s
 `cin.tie(0)`, and `cout >> '\n'` rather than `cout >> endl` which flushes the buffer, I was able to make this `O(n^2)` solution pass.
 
 I'm curious if there's a solution that runs in `O(n log n)` time.
-
-### 4.4 Maximal Sum Subarray
-
 **EDIT 7th September 2018**
 There is an `O(n log n)` solution using segment trees. I'll probably want to write it up and put it on the blog, it's quite interesting.
 
+### 4.4 Maximal Sum Subarray
+
 ## Week 5 (3/4 complete)
-### 5.1 Longest Increasing Sequence
-### 5.2 Minimum Edit Distance
-### 5.3 Digit Sum
+### 5.1 Longest Increasing Sequence (solved 7th September 2018)
+### 5.2 Minimum Edit Distance (solved 10th September 2018)
+### 5.3 Digit Sum (solved 10th September 2018)
 ### 5.4 Make it Sorted
 
-## Week 6 (2/4 complete)
-### 6.1 Knapsack
-### 6.2 Chain Matrix Multiplication
-### 6.3 Longest Common Subsequence
+## Week 6 (4/4 complete)
+### 6.1 Knapsack (solved 9th September 2018)
+Bog standard implementation of the 0-1 knapsack problem.
+As a nice bonus, solving this problem meant I could solve the identical knapsack
+problem on Tim Roughgarden's Algos course.
+### 6.2 Chain Matrix Multiplication (solved 8th September 2018)
+### 6.3 Longest Common Subsequence (solved 10th September 2018)
  Given two sequences A and B of the same length, find the largest common subsequence; 
  that is, find the largest integer k such that there exist two sequences of indices
+ ```
  i_0, i_1 , ..., i_n and
  j_0, j_1, ...., j_n 
- of length k such that for all 0 <= x <= n, A[i_x] = B[i_x].
+ ```
+ of length k such that for all `0 <= x <= n, A[i_x] = B[j_x]`.
 
 For example, one largest common subsequence of the two sequences
-    1 2 3 4 5
-    1 3 2 4 4
-is 3,
-    0 1 3
-    0 2 3
+```
+1 2 3 4 5
+1 3 2 4 4
+```
+is
+```
+0 1 3
+0 2 3
+```
 
+This admits a dynamic programming solution that runs in O(n^2) time.
 
-### 6.4 Maximum Sum Square
+### 6.4 Maximum Sum Square (solved 11th September 2018)
+Given an nxn matrix A of integers an an integer k,
+find a kxk submatrix of A with the maximum sum of elements.
+
+1 <= k <= n <= 700
+Integers in the matrix are guaranteed to be <= 1000.
+
+That means 700 * 700 * 1000 <= INT_MAX, so we can use integers.
