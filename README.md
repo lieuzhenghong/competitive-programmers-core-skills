@@ -190,9 +190,10 @@ There is an `O(n log n)` solution using segment trees. I'll probably want to wri
 ## Week 6 (4/4 complete)
 ### 6.1 Knapsack (solved 9th September 2018)
 Bog standard implementation of the 0-1 knapsack problem.
-As a nice bonus, solving this problem meant I could solve the identical knapsack
+As a nice bonus, solving this problem meant I could solve the (identical) knapsack
 problem on Tim Roughgarden's Algos course.
 ### 6.2 Chain Matrix Multiplication (solved 8th September 2018)
+
 ### 6.3 Longest Common Subsequence (solved 10th September 2018)
  Given two sequences A and B of the same length, find the largest common subsequence; 
  that is, find the largest integer k such that there exist two sequences of indices
@@ -223,3 +224,15 @@ find a kxk submatrix of A with the maximum sum of elements.
 Integers in the matrix are guaranteed to be <= 1000.
 
 That means 700 * 700 * 1000 <= INT_MAX, so we can use integers.
+The dynamic programming algorithm relies upon a nice geometrical relation.
+
+![Understanding the recurrence relation](img/6.4_explanation_1.png)
+![Understanding the recurrence relation](img/6.4_explanation_6.png)
+Suppose we want to find the sum of the submatrix D. We can do a constant amount of work to find it by relying on the previous computations.
+![Understanding the recurrence relation](img/6.4_explanation_2.png)
+![Understanding the recurrence relation](img/6.4_explanation_3.png)
+![Understanding the recurrence relation](img/6.4_explanation_4.png)
+![Understanding the recurrence relation](img/6.4_explanation_5.png)
+![Understanding the recurrence relation](img/6.4_explanation_6.png)
+
+With this memoization, the solution runs in O(n^2) time rather than the O(n^2k^2) time needed in a naive solution.
